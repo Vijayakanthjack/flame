@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.square {
+    width: 6rem;
+    height: 6rem;
+    background-color: rgb(255, 234, 0);
+}
+.square2 {
+    width: 6rem;
+    height: 6rem;
+    background-color: rgb(255, 0, 111);
+}
