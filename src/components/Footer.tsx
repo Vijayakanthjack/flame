@@ -9,6 +9,8 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import YouTubeIcon from "@mui/icons-material/YouTube";
+import TikTokIcon from './TikTokIcon';
+
 import flamelogo from "/flame-logo.svg";
 import { useTranslation } from "react-i18next";
 import { BsTwitterX } from "react-icons/bs";
@@ -22,6 +24,7 @@ const socialMediaLinks = [
     ),
   },
   { href: "https://www.youtube.com", icon: <YouTubeIcon /> },
+  { href: "https://www.tiktok.com", icon: <TikTokIcon /> },
   { href: "https://www.linkedin.com", icon: <LinkedInIcon /> },
   { href: "https://www.facebook.com", icon: <FacebookIcon /> },
   { href: "https://www.instagram.com", icon: <InstagramIcon /> },
@@ -46,7 +49,7 @@ const Footer = () => {
         <Toolbar
           sx={{
             display: "flex",
-            alignItems: {xs:'start', md:'start'},
+            alignItems: {xs:'start', md:'center'},
             justifyContent: "space-between",
             gap: "12px",
             width: {xs:'100%', md:'70%'},
@@ -55,7 +58,20 @@ const Footer = () => {
         >
          
 
-          <List sx={{ display: "flex", flexDirection: "row", padding: 0, order:{xs:-1, md:2} }}>
+         
+          <Box sx={{ display:'flex', justifyContent:'space-between', width:'100%', flexDirection:{xs:'column', md:'row'}, }}>
+          
+          <Button
+            component="a"
+            href={"/"}
+            target="_blank"
+            rel="noopener noreferrer"
+            sx={{ display:{xs:'none', md:'flex'} }}
+          >
+            <img src={flamelogo} className="w-32 h-8 object-contain" />
+          </Button>
+
+          <List sx={{ display: "flex", flexDirection: "row", padding: 0, order:{xs:-1, md:0} }}>
             {socialMediaLinks.map((item, index) => (
               <ListItem key={index} sx={{ width: "auto", padding: 0 }}>
                 <IconButton
@@ -66,7 +82,7 @@ const Footer = () => {
                   sx={{
                     color: "white",
                     "&:hover": {
-                      color: "#B6B6B6",
+                      color: "#FB1F43",
                     },
                   }}
                 >
@@ -75,18 +91,9 @@ const Footer = () => {
               </ListItem>
             ))}
           </List>
-          <Box sx={{ display:'flex', justifyContent:'space-between', width:'100%' }}>
-          <Button
-            component="a"
-            href={"/"}
-            target="_blank"
-            rel="noopener noreferrer"
-        
-          >
-            <img src={flamelogo} className="w-32 h-8 object-contain" />
-          </Button>
 
-          <List sx={{  display: "flex", flexDirection: {xs:'column', md:'row'}, padding: 0, order:{xs:-1, md:1} }}>
+          <Box sx={{ display:{xs:'flex', md:'unset'}, justifyContent:'space-between', marginTop:{xs:'16px', sm:'16px', md:'0px'} }}>
+          <List sx={{  display: "flex", flexDirection: {xs:'column', md:'row'}, padding: 0,  order:{xs:-1, md:0} }}>
             {privaypolicylinks.map((item, index) => (
               <ListItem key={index} sx={{ width: "auto", padding: 0 }}>
                 <Button
@@ -97,6 +104,7 @@ const Footer = () => {
                   sx={{
                     color: "white",
                     textTransform: "capitalize",
+                    fontSize: "14px",
                     "&:hover": {
                       textDecoration: "underline",
                     },
@@ -107,6 +115,21 @@ const Footer = () => {
               </ListItem>
             ))}
           </List>
+
+          <Button
+            component="a"
+            href={"/"}
+            target="_blank"
+            rel="noopener noreferrer"
+            sx={{ display:{xs:'flex', md:'none'} }}
+          >
+            <img src={flamelogo} className="w-32 h-8 object-contain" />
+          </Button>
+
+          </Box>
+
+          
+
           </Box>
 
         </Toolbar>

@@ -28,6 +28,7 @@ interface Props {
   btnClick: () => void;
   btnTxt: string;
   mobileMockup?: boolean;
+  heroParaWidth? :boolean;
 }
 gsap.registerPlugin(ScrollTrigger);
 const SlideImage = ({
@@ -45,41 +46,46 @@ const SlideImage = ({
   leftAlignmentTxt,
   btnTxt,
   mobileMockup,
+  heroParaWidth
 }: Props) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [videoLoaded, setVideoLoaded] = useState(false);
-  const { t } = useTranslation();
-  const texts = ["Crush", "Muse", "Love"];
-  // Text Effect
-  useEffect(() => {
-    if (videoLoaded) {
-      const intervalId = setInterval(() => {
-        setCurrentIndex((prevIndex) => (prevIndex + 1) % texts.length);
-      }, 5000);
+const [videoLoaded, setVideoLoaded] = useState(false);
+const { t } = useTranslation();
+const texts = ["Crush", "Muse", "Love"];
 
-      return () => clearInterval(intervalId);
-    }
-  }, [videoLoaded]);
+// Text Effect
+useEffect(() => {
+  let intervalId;
+  if (videoLoaded) {
+    intervalId = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % texts.length);
+    }, 5000);
+  }
+
+  return () => {
+    clearInterval(intervalId);
+  };
+}, [videoLoaded, texts.length]);
   //Mobile cover useEffect
 
-  useEffect(() => {
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".redcard",
-        markers: false,
-        scrub: 1,
-        start: "top 20%",
-        end: "top 80%",
-      },
-    });
+  // useEffect(() => {
+  //   const tl = gsap.timeline({
+  //     scrollTrigger: {
+  //       trigger: ".redcard",
+  //       markers: false,
+  //       scrub: 1,
+  //       start: "top 20%",
+  //       end: "top 80%",
+  //     },
+  //   });
 
-    tl.from(".mobileCover", {
-      y: 200,
-      opacity: 0,
-      duration: 1,
-      stagger: 0.2,
-    }).to(".mobileCover", { y: 0, opacity: 1, duration: 2, stagger: 0.2 });
-  }, []);
+  //   tl.from(".mobileCover", {
+  //     y: 200,
+  //     opacity: 0,
+  //     duration: 1,
+  //     stagger: 0.2,
+  //   }).to(".mobileCover", { y: 0, opacity: 1, duration: 2, stagger: 0.2 });
+  // }, []);
 
   let herGradient = "";
 
@@ -93,8 +99,8 @@ const SlideImage = ({
       sx={{
         borderRadius: 0,
         position: "relative",
-        scrollSnapAlign: "start",
         height: "100vh",
+
       }}
       className={gradientClr}
     >
@@ -169,10 +175,11 @@ const SlideImage = ({
                 variant="h1"
                 sx={{
                   fontWeight: "bold",
-                  fontSize: { xs: "9vw", md: "5vw" },
+                  fontSize: { xs: "9vw", md: "5vw", xl:'5vw' },
                   color: "white",
                   position: "relative",
                   display: "flex",
+                  
                 }}
               >
                 {t(heroTitle)}{" "}
@@ -184,20 +191,11 @@ const SlideImage = ({
                 {heroSpan && (
                   <Box
                     className="text-container"
-                    sx={{
-                      color: "#FB1F43",
-                      fontSize: { xs: "9vw", md: "5vw" },
-                      fontWeight: "bold",
-                    }}
                   >
                     {texts.map((text, index) => (
                       <Box
                         key={index}
-                        sx={{
-                          color: "#FB1F43",
-                          fontSize: { xs: "9vw", md: "5vw" },
-                          fontWeight: "bold",
-                        }}
+                        sx= {{ color: "#FB1F43" }}
                         className={`text ${
                           index === currentIndex ? "animate" : ""
                         }`}
@@ -207,7 +205,7 @@ const SlideImage = ({
                             variant="h1"
                             sx={{
                               color: "#FB1F43",
-                              fontSize: { xs: "9vw", md: "5vw" },
+                              fontSize: { xs: "9vw", md: "5vw", xl:'5vw' },
                               fontWeight: "bold",
                             }}
                           >
@@ -223,13 +221,13 @@ const SlideImage = ({
               </Typography>
             </Box>
 
-            <Box sx={{ width: { xs: "100%", md: "40%" }, marginTop: "1rem" }}>
+            <Box sx={{ width: heroParaWidth ? { xs: "100%", md: "38%" } : 'auto', marginTop: "1rem" }}>
               <Typography
                 variant="body1"
                 sx={{
                   whiteSpace: "pre-line",
                   fontSize: { xs: "16px", md: "18px" },
-                  fontWeight: 300,
+                  fontWeight: 400,
                   lineHeight: "28px",
                   color: "white",
                 }}
@@ -247,9 +245,10 @@ const SlideImage = ({
                 bgcolor: "#FB1F43",
                 textTransform: "capitalize",
                 paddingInline: "2rem",
+                paddingBlock: ".5rem",
                 borderRadius: "999px",
-                fontSize: "16px",
-                fontWeight: "medium",
+                fontSize: "18px",
+                fontWeight: 500,
                 "&:hover": {
                   bgcolor: "#C81230",
                   color: "white",
@@ -313,7 +312,8 @@ const SlideImage = ({
                   fontWeight: "bold",
                   wordBreak: "break-all",
                   overflowWrap: "break-word",
-                  fontSize: { xs: "9vw", md: "5vw" },
+                  fontSize: { xs: "9vw", md: "5vw", xl:'5vw' },
+                  display: "inline-block", whiteSpace: "pre-line"
                 }}
               >
                 {t(heroTitle)}{" "}
@@ -323,19 +323,20 @@ const SlideImage = ({
                 sx={{
                   display: "flex",
                   flexDirection: "column",
-                  gap: "16px",
-                  width: { xs: "100%", md: "60%" },
+                  gap: "28px",
+                  width: { xs: "100%", md: "100%" },
                 }}
               >
                 {heroSubTitle && typeof heroSubTitle === "string" && (
                   <Typography
-                    variant="h5"
+                    variant="h2"
                     sx={{
                       fontWeight: "bold",
                       color: "white",
                       lineHeight: { xs: "28px", md: "32px" },
                       whiteSpace: "pre-line",
                       fontSize: { xs: "22px", md: "26px" },
+                 
                     }}
                   >
                     {t(heroSubTitle)}{" "}
@@ -348,7 +349,7 @@ const SlideImage = ({
                     whiteSpace: "pre-line",
                     fontSize: { xs: "16px", md: "18px" },
                     color: "white",
-                    fontWeight: 300,
+                    fontWeight: 400,
                     lineHeight: "28px",
                   }}
                 >
@@ -365,9 +366,10 @@ const SlideImage = ({
                   bgcolor: "#FB1F43",
                   textTransform: "capitalize",
                   paddingInline: "2rem",
+                  paddingBlock: ".5rem",
                   borderRadius: "999px",
-                  fontSize: "16px",
-                  fontWeight: "medium",
+                  fontSize: "18px",
+                  fontWeight: 500,
                   "&:hover": {
                     bgcolor: "#C81230",
                     color: "white",
@@ -387,7 +389,7 @@ const SlideImage = ({
                   flexGrow: 1,
                   flexShrink: 1,
                   flexBasis: "0%",
-                  display: {xs:'none', md:'flex'},
+                  display: {xs:'none', sm:'none', md:'flex'},
                   alignItems: "center",
                   justifyContent: "center",
                   height: "100%",

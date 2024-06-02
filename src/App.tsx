@@ -12,20 +12,24 @@ const theme = createTheme({
     h1: {
       fontWeight: 'bold',
     },
+    h2: {
+      fontFamily: 'Inter, Helvetica, Arial, sans-serif',
+    },
     body1: {
-      fontFamily: 'Noto Sans, Helvetica, Arial, sans-serif',
-      fontWeight: 300,
+      fontFamily: 'Inter, Helvetica, Arial, sans-serif',
+      fontWeight: 400,
     },
     button: {
       fontFamily: 'Helvetica, Arial, sans-serif',
       textTransform: 'none', // Optional: to keep button text case as it is
+      fontWeight:400,
     },
   },
 });
 
 function App() {
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme} >
     <CssBaseline />
     <Router>
       <Routes>
