@@ -40,15 +40,14 @@ const Home = () => {
         }
       }
     };
-  
+
     const container = scrollContainerRef.current! as HTMLDivElement; // Explicitly specify the type
     container?.addEventListener("wheel", handleWheel);
-  
+
     return () => {
       container?.removeEventListener("wheel", handleWheel);
     };
   }, []);
-  
 
   return (
     <ReactLenis root>
@@ -112,12 +111,11 @@ const Home = () => {
             btnTxt="Coming Soon"
             mobileMockup={false}
           />
-              <Box className="footer-container">
-        <Footer />
-      </Box>
+        </Box>
+        <Box className="footer-container">
+          <Footer />
         </Box>
       </Box>
-  
     </ReactLenis>
   );
 };

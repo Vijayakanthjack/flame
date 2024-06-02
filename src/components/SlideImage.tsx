@@ -50,6 +50,7 @@ const SlideImage = ({
 }: Props) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [videoLoaded, setVideoLoaded] = useState(false);
+  const [videoError, setVideoError] = useState(false);
   const { t } = useTranslation();
   const texts: string[] = ["Crush", "Muse", "Love"];
 
@@ -66,6 +67,28 @@ const SlideImage = ({
       clearInterval(intervalId);
     };
   }, [videoLoaded, texts.length]);
+
+  // Load video on page load
+  useEffect(() => {
+    if (isVideo && videoSrc) { // Add a check for videoSrc
+      const videoElement = document.createElement("video");
+      videoElement.src = videoSrc;
+      videoElement.preload = "auto";
+      videoElement.load();
+      videoElement.addEventListener("loadeddata", () => {
+        setVideoLoaded(true);
+      });
+      videoElement.addEventListener("error", () => {
+        setVideoError(true);
+        console.error("Error loading video:", videoSrc);
+      });
+  
+      return () => {
+        videoElement.removeEventListener("loadeddata", () => {});
+        videoElement.removeEventListener("error", () => {});
+      };
+    }
+  }, [isVideo, videoSrc]);
   //Mobile cover useEffect
 
   // useEffect(() => {
@@ -104,7 +127,7 @@ const SlideImage = ({
       }}
       className={gradientClr}
     >
-      {isVideo && (
+      {isVideo && !videoError && videoLoaded && (
         <CardMedia
           component={"video"}
           image={videoSrc}
@@ -239,7 +262,7 @@ const SlideImage = ({
             <Button
               onClick={btnClick}
               sx={{
-                my: 2,
+                marginTop:'24px',
                 color: "white",
                 display: "block",
                 bgcolor: "#FB1F43",
@@ -336,7 +359,7 @@ const SlideImage = ({
                       lineHeight: { xs: "28px", md: "32px" },
                       whiteSpace: "pre-line",
                       fontSize: { xs: "22px", md: "26px" },
-                 
+                      marginTop:'16px'
                     }}
                   >
                     {t(heroSubTitle)}{" "}
@@ -360,7 +383,7 @@ const SlideImage = ({
               <Button
                 onClick={btnClick}
                 sx={{
-                  my: 2,
+                  marginTop:'24px',
                   color: "white",
                   display: "block",
                   bgcolor: "#FB1F43",
