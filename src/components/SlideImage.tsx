@@ -49,23 +49,23 @@ const SlideImage = ({
   heroParaWidth
 }: Props) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-const [videoLoaded, setVideoLoaded] = useState(false);
-const { t } = useTranslation();
-const texts = ["Crush", "Muse", "Love"];
+  const [videoLoaded, setVideoLoaded] = useState(false);
+  const { t } = useTranslation();
+  const texts: string[] = ["Crush", "Muse", "Love"];
 
-// Text Effect
-useEffect(() => {
-  let intervalId;
-  if (videoLoaded) {
-    intervalId = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % texts.length);
-    }, 5000);
-  }
+  // Text Effect
+  useEffect(() => {
+    let intervalId: number;
+    if (videoLoaded) {
+      intervalId = setInterval(() => {
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % texts.length);
+      }, 5000);
+    }
 
-  return () => {
-    clearInterval(intervalId);
-  };
-}, [videoLoaded, texts.length]);
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, [videoLoaded, texts.length]);
   //Mobile cover useEffect
 
   // useEffect(() => {

@@ -28,24 +28,27 @@ const Home = () => {
   const heroflameTitle = "Flame \nMoments";
 
   useEffect(() => {
-    const handleWheel = (event) => {
+    const handleWheel = (event: WheelEvent) => {
       event.preventDefault();
       const { deltaY } = event;
-      const container = scrollContainerRef.current;
-      if (deltaY > 0) {
-        container.scrollBy({ top: window.innerHeight, behavior: "smooth" });
-      } else {
-        container.scrollBy({ top: -window.innerHeight, behavior: "smooth" });
+      const container = scrollContainerRef.current! as HTMLDivElement; // Explicitly specify the type
+      if (container) {
+        if (deltaY > 0) {
+          container.scrollBy({ top: window.innerHeight, behavior: "smooth" });
+        } else {
+          container.scrollBy({ top: -window.innerHeight, behavior: "smooth" });
+        }
       }
     };
-
-    const container = scrollContainerRef.current;
-    container.addEventListener("wheel", handleWheel);
-
+  
+    const container = scrollContainerRef.current! as HTMLDivElement; // Explicitly specify the type
+    container?.addEventListener("wheel", handleWheel);
+  
     return () => {
-      container.removeEventListener("wheel", handleWheel);
+      container?.removeEventListener("wheel", handleWheel);
     };
   }, []);
+  
 
   return (
     <ReactLenis root>
