@@ -41,7 +41,7 @@ const Footer = () => {
     <Box
       sx={{
         bgcolor: "#0D0B0C",
-        paddingBlock: {xs:'2rem', md:'3rem'},
+        paddingBlock: {xs:'4rem', sm:'4rem', md:'3rem'},
         position: "relative",
       }}
     >

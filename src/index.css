@@ -37,6 +37,6 @@ html, body {
 }
 
 .footer-container {
-    height: 150px; /* Adjust this based on the actual footer height */
+    /* height: 150px; */
     scroll-snap-align: end;
 }
