@@ -198,7 +198,7 @@ const SlideImage = ({
                 variant="h1"
                 sx={{
                   fontWeight: "bold",
-                  fontSize: { xs: "9vw", md: "5vw", xl:'5vw' },
+                  fontSize: { xs: "9vw", md: "7vw", xl:'5vw' },
                   color: "white",
                   position: "relative",
                   display: "flex",
@@ -228,7 +228,7 @@ const SlideImage = ({
                             variant="h1"
                             sx={{
                               color: "#FB1F43",
-                              fontSize: { xs: "9vw", md: "5vw", xl:'5vw' },
+                              fontSize: { xs: "9vw", md: "7vw", xl:'5vw' },
                               fontWeight: "bold",
                             }}
                           >
@@ -249,7 +249,7 @@ const SlideImage = ({
                 variant="body1"
                 sx={{
                   whiteSpace: "pre-line",
-                  fontSize: { xs: "16px", md: "18px" },
+                  fontSize: { xs: "16px", md: "16px", xl:'18px' },
                   fontWeight: 400,
                   lineHeight: "28px",
                   color: "white",
@@ -268,9 +268,9 @@ const SlideImage = ({
                 bgcolor: "#FB1F43",
                 textTransform: "capitalize",
                 paddingInline: "2rem",
-                paddingBlock: ".5rem",
+                paddingBlock: ".45rem",
                 borderRadius: "999px",
-                fontSize: "18px",
+                fontSize: {xs:"16px", md:"14px", xl:"16px"},
                 fontWeight: 500,
                 "&:hover": {
                   bgcolor: "#C81230",
@@ -335,7 +335,7 @@ const SlideImage = ({
                   fontWeight: "bold",
                   wordBreak: "break-all",
                   overflowWrap: "break-word",
-                  fontSize: { xs: "9vw", md: "5vw", xl:'5vw' },
+                  fontSize: { xs: "9vw", md: "7vw", xl:'5vw' },
                   display: "inline-block", whiteSpace: "pre-line"
                 }}
               >
@@ -370,7 +370,7 @@ const SlideImage = ({
                   variant="body1"
                   sx={{
                     whiteSpace: "pre-line",
-                    fontSize: { xs: "16px", md: "18px" },
+                    fontSize: { xs: "16px", md: "16px", xl:'18px' },
                     color: "white",
                     fontWeight: 400,
                     lineHeight: "28px",
@@ -389,9 +389,9 @@ const SlideImage = ({
                   bgcolor: "#FB1F43",
                   textTransform: "capitalize",
                   paddingInline: "2rem",
-                  paddingBlock: ".5rem",
+                  paddingBlock: ".45rem",
                   borderRadius: "999px",
-                  fontSize: "18px",
+                  fontSize: {xs:"16px", md:"14px", xl:"16px"},
                   fontWeight: 500,
                   "&:hover": {
                     bgcolor: "#C81230",

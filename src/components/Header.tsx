@@ -8,7 +8,7 @@ import flamelogo from "/flame-logo.svg";
 import Languagebtn from "./Languagebtn";
 import { useTranslation, I18nextProvider } from "react-i18next";
 import CardMedia from "@mui/material/CardMedia";
-import i18n from "./i18n"; // Corrected import path
+import i18n from "./i18n"; 
 
 const Header = () => {
   const [showLogo, setShowLogo] = useState(true);
@@ -83,8 +83,9 @@ const Header = () => {
                   bgcolor: "#FB1F43",
                   textTransform: "capitalize",
                   paddingInline: "2rem",
+                  paddingBlock: ".45rem",
                   borderRadius: "999px",
-                  fontSize: "16px",
+                  fontSize: {xs:"16px", md:"14px", xl:"16px"},
                   "&:hover": {
                     bgcolor: "#C81230",
                     color: "white",

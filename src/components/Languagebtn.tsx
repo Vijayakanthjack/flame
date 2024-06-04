@@ -96,8 +96,10 @@ const Languagebtn = () => {
         sx={{
           backgroundColor: 'white',
           color: 'black',
-          borderRadius: '50px',
-          fontSize: "16px",
+          paddingInline: ".65rem",
+          paddingBlock: ".45rem",
+          borderRadius: "999px",
+          fontSize: {xs:"16px", md:"14px", xl:"16px"},
           '&:hover': {
             backgroundColor: 'white',
           },
